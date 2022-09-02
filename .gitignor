@@ -1,7 +1,0 @@
-.idea
-/node_modules/
-/server/node_modules/
-.env
-.DS_Store
-commitlint.config.js
-.husky

@@ -1,0 +1,11 @@
+.idea
+.DS_Store
+.husky
+logs
+node_modules/
+/server/node_modules/
+.env
+/server/.env
+/server/public/
+commitlint.config.js
+*.log
