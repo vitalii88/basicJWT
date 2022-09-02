@@ -1,7 +1,9 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
+import expressAsyncError from 'express-async-errors';
 import dbConnector from './db/dbConnector.js';
+import errorHandlerMiddleware from './middleware/errorHandler.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 5001;
@@ -12,6 +14,8 @@ const app = express();
 //middleware
 app.use(express.json());
 app.use(cors());
+
+app.use(errorHandlerMiddleware);
 
 dbConnector(MONGO_DB_URL)
   .then(() => {
