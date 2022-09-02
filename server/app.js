@@ -5,6 +5,8 @@ import expressAsyncError from 'express-async-errors';
 import dbConnector from './db/dbConnector.js';
 import errorHandlerMiddleware from './middleware/errorHandler.js';
 import notFoundMiddleware from './middleware/notFound.js';
+import mainRoute from './routes/main.js';
+
 
 dotenv.config();
 const PORT = process.env.PORT || 5001;
@@ -15,6 +17,10 @@ const app = express();
 //middleware
 app.use(express.json());
 app.use(cors());
+
+app.use(express.static('./public'));
+
+app.use('/api/v1', mainRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
