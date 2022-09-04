@@ -1,10 +1,10 @@
-import CustomAPIError from '../errors/CustomError.js';
+import { AuthError } from '../errors/index.js';
 import jwt from 'jsonwebtoken';
 
 const authMiddleware = async (req, resp, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    throw new CustomAPIError('No token provided', 401);
+    throw new AuthError('No token provided');
   }
 
   const token = authHeader.split(' ')[1];
@@ -16,7 +16,7 @@ const authMiddleware = async (req, resp, next) => {
     req.user = { id, username };
     next();
   } catch (error) {
-    throw new CustomAPIError('Not authorizet to this route', 401);
+    throw new AuthError('Not authorizet to this route');
   }
 }
 
